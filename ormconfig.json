@@ -1,0 +1,16 @@
+{
+    "type": "mysql",
+    "port": 3306,
+    "host": "localhost",
+    "username": "dev-manager",
+    "password": "dev-manager",
+    "database": "floricultura",
+    "migrations": ["./src/database/migrations/*.ts"],
+    "cli": {
+        "migrationsDir": "./src/database/migrations",
+        "entitiesDir": ".src/modules/customers/entities"
+    },
+    "entities": [
+      "./src/modules/costumers/entities/**/*{.ts,.js}" 
+    ]
+}
