@@ -1,0 +1,24 @@
+{
+  "name": "softex-fap-floricultura-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:marcelofox4/softex-fap-floricultura-api.git",
+  "author": "marcelofox4 <marcelofox4@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+		"typeorm": "ts-node-dev ./node_modules/typeorm/cli"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "express": "^4.18.2",
+    "mysql2": "^3.6.2",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.2.31"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.20",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
+  }
+}
