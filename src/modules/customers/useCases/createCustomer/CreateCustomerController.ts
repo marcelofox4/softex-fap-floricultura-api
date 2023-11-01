@@ -14,7 +14,7 @@ class CreateCustomerController {
             await this.createCustomerUseCase.execute({ name, cpf, email, phoneNumber, address });
         } catch (error) {
             console.log(error)
-            response.status(400).send("Customer Already exists");
+            response.status(400).json({message: "Customer Already exists"});
         }
         
         return response.status(201).send();

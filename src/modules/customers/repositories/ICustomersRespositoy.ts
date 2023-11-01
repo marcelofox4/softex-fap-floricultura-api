@@ -16,6 +16,8 @@ interface ICustomersRepository {
 
     findByCpf(cpf: string): Promise<Customer>;
 
+    delete(cpf: string): Promise<void>;
+
 }
 
 export { ICreateCustomerDTO, ICustomersRepository }

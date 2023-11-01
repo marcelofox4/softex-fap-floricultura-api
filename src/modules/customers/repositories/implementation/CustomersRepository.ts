@@ -1,7 +1,7 @@
 import { Customer } from "../../entities/Customer";
 import { ICreateCustomerDTO, ICustomersRepository } from "../ICustomersRespositoy";
 import { AppDataSource } from "../../../../database/data-source";
-import { Repository } from "typeorm";
+import { Repository, SubjectWithoutIdentifierError } from "typeorm";
 
 class CustomersRepository implements ICustomersRepository {
     
@@ -31,6 +31,15 @@ class CustomersRepository implements ICustomersRepository {
     async findByCpf(cpf: string): Promise<Customer> {
         const customer = await this.repository.findOne({ where: { cpf } });
         return customer;
+    }
+
+    async delete(cpf: string): Promise<void> {
+        
+        const customer = await this.findByCpf(cpf);
+
+        if (customer) {
+            this.repository.delete(customer);
+        }
     }
 }
 export { CustomersRepository };
