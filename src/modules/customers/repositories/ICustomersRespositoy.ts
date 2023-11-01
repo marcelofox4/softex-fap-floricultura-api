@@ -8,6 +8,13 @@ interface ICreateCustomerDTO {
     address: string;
 }
 
+interface IUpdateCustomerDTO {
+    cpf: string;
+    email?: string;
+    phoneNumber?: string;
+    address?: string;
+}
+
 interface ICustomersRepository {
 
     create({ name, cpf, email, phoneNumber, address }: ICreateCustomerDTO): Promise<void>;
@@ -18,6 +25,8 @@ interface ICustomersRepository {
 
     delete(cpf: string): Promise<void>;
 
+    update({ cpf, email, phoneNumber, address }: IUpdateCustomerDTO): Promise<void>;
+
 }
 
-export { ICreateCustomerDTO, ICustomersRepository }
+export { ICreateCustomerDTO, IUpdateCustomerDTO, ICustomersRepository }

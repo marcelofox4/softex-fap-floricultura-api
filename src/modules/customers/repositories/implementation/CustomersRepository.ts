@@ -1,5 +1,5 @@
 import { Customer } from "../../entities/Customer";
-import { ICreateCustomerDTO, ICustomersRepository } from "../ICustomersRespositoy";
+import { ICreateCustomerDTO, ICustomersRepository, IUpdateCustomerDTO } from "../ICustomersRespositoy";
 import { AppDataSource } from "../../../../database/data-source";
 import { Repository, SubjectWithoutIdentifierError } from "typeorm";
 
@@ -39,6 +39,19 @@ class CustomersRepository implements ICustomersRepository {
 
         if (customer) {
             this.repository.delete(customer);
+        }
+    }
+
+    async update({ cpf, email, phoneNumber, address }: IUpdateCustomerDTO): Promise<void> {
+
+        const customer = await this.findByCpf(cpf);
+
+        if (customer) {
+            // customer.email = email;
+            // customer.phoneNumber = phoneNumber;
+            // customer.address = address;
+
+            await this.repository.update({ cpf: cpf }, { email: email, phoneNumber: phoneNumber, address: address });
         }
     }
 }
