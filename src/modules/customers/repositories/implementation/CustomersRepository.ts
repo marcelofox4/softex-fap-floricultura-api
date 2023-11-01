@@ -1,13 +1,14 @@
 import { Customer } from "../../entities/Customer";
 import { ICreateCustomerDTO, ICustomersRepository } from "../ICustomersRespositoy";
-import { Repository, getRepository } from "typeorm";
+import { AppDataSource } from "../../../../database/data-source";
+import { Repository } from "typeorm";
 
 class CustomersRepository implements ICustomersRepository {
     
     private repository: Repository<Customer>;
 
     constructor() {
-        this.repository = getRepository(Customer);
+        this.repository = AppDataSource.getRepository(Customer);
     }
     
     async create({ name, cpf, email, phoneNumber, address }: ICreateCustomerDTO): Promise<void> {
@@ -28,13 +29,8 @@ class CustomersRepository implements ICustomersRepository {
     }
     
     async findByCpf(cpf: string): Promise<Customer> {
-        const customer = await this.repository.findOne({ cpf });
-        if (customer) {
-            return customer;
-        }
-        throw new Error("This customer was not found!");   
+        const customer = await this.repository.findOne({ where: { cpf } });
+        return customer;
     }
-
 }
-
 export { CustomersRepository };
