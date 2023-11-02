@@ -14,7 +14,7 @@ class UpdateCustomerController {
             await this.updateCustomerUseCase.execute({ cpf, email, phoneNumber, address });
         } catch (error) {
             console.log(error);
-            response.status(400).json({message: "Customer does not exist"});
+            response.status(400).json({message: "Customer does not exist!"});
         }
         
         return response.status(200).send();

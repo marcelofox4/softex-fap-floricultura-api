@@ -47,10 +47,6 @@ class CustomersRepository implements ICustomersRepository {
         const customer = await this.findByCpf(cpf);
 
         if (customer) {
-            // customer.email = email;
-            // customer.phoneNumber = phoneNumber;
-            // customer.address = address;
-
             await this.repository.update({ cpf: cpf }, { email: email, phoneNumber: phoneNumber, address: address });
         }
     }
